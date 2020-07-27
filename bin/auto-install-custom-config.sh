@@ -32,6 +32,9 @@ INSTALL_OKULAR=1
 INSTALL_OBS=1
 INSTALL_BLENDER=1
 INSTALL_AUDACITY=1
+INSTALL_VLC=1
+INSTALL_SYNCTHING=1
+INSTALL_ALACARTE=1
 ###
 
 ### Installing Brave browser.
@@ -47,6 +50,7 @@ printf "\nWould you like to install brave-browser?"; read yesorno
         echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
         sudo apt update
         sudo apt install brave-browser
+        break
     elif [[ $yesorno == "n"* ]]; then
         printf "\nNot installing brave-browser" && break;
     fi
@@ -67,4 +71,6 @@ printf "\nWould you like to install GIMP?"; read yesorno
     fi
 done
 ###
-
+### Exit the script
+exit
+    
