@@ -1,7 +1,9 @@
 # custom-autoinstall-linux
 **ABOUT**
 
-Script to make it easier when installing or re-installing common third-party software AND games. Prompts the user whether to install any of the included software. Designed for personal-use in Ubuntu and Ubuntu-based distros. This program may also be given to new-to-Linux-users who just want to go through a wizard that installs commonly useful software for them. It may also used by gamers such as myself who want to quickly install emulators and games without hassle.
+Script to make it easier when installing or re-installing common third-party software AND games. Prompts the user whether to install any of the included software. Designed for personal-use in Ubuntu and Ubuntu-based distros. This program may also be given to new-to-Linux-users who just want to go through a wizard that installs commonly useful software for them that they may likely use in the future.
+
+An even cooler feature: It may be used by gamers such as myself who want to quickly install emulators and games without any hassle or friction. I plan on including all gaming software you are likely to need or to use on a linux system.
 
 **MORE FACTS**
 * *People are free to download this and modify it to suit their needs.* 
