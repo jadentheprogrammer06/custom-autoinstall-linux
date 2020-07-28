@@ -41,3 +41,6 @@ An even cooler feature: It may be used by gamers such as myself who want to quic
 * **Minecraft Java Edition for PC.** (*The original game*. Natively supported & Has Large Mod Support. No Crossplatform-play with consoles/bedrock.)
 * **Free & Open-Source Minecraft clone "minetest"** (try it out sometime! It is fairly lightweight, has some mods, and most importantly is free.)
 
+# Known Bugs.
+* Linux Mint has problems. This is because as of Linux Mint 20 the snap store and installing snap packages is disabled. Even after enabling snap it still has some problems installing. (From testing in a VM)
+* Anki seems to have trouble installing. I will update the installation instructions later.
