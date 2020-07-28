@@ -5,6 +5,7 @@ Script to make it easier when installing or re-installing common third-party sof
 
 An even cooler feature: It may be used by gamers such as myself who want to quickly install emulators and games without any hassle or friction. I plan on including all gaming software you are likely to need or to use on a linux system.
 
+*Warning: This script still needs to be tested farther. Some farther configuration needs to be done in order for certain programs to install properly.*
 **MORE FACTS**
 * *People are free to download this and modify it to suit their needs.* 
 * Programs are installed based on stable builds and the recommended sources/repositories. I used the Snap Store for some software since it has newer versions, for example.*
