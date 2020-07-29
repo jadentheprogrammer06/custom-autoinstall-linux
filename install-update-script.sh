@@ -12,24 +12,24 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
         cd ~/Downloads/temp-script-install/
         wget $INSTALL_TEMP_ARCHIVE_URL
         unzip ./master.zip
-        sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH
+        sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
         cd ~/Downloads/
         rm temp-script-install -r
         break
     elif [[ $yesorno == "U"* ]]; then
         printf "\nUpdating script in $INSTALL_PATH PATH directory...\n"
-        sudo rm $INSTALL_PATH/custom-autoinstall-linux.sh # removes existing before updating.
+        sudo rm $INSTALL_PATH/custom-autoinstall-linux # removes existing before updating.
         mkdir ~/Downloads/temp-script-install/
         cd ~/Downloads/temp-script-install/
         wget $INSTALL_TEMP_ARCHIVE_URL
         unzip ./master.zip
-        sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH
+        sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
         cd ~/Downloads/
         rm temp-script-install -r
         break
     elif [[ $yesorno == "R"* ]]; then
         printf "\nRemoving script from $INSTALL_PATH directory...\n"
-        sudo rm $INSTALL_PATH/custom-autoinstall-linux.sh
+        sudo rm $INSTALL_PATH/custom-autoinstall-linux
         break
     elif [[ $yesorno == "N"* ]]; then
         printf "\nNot installing/updating. Exiting script.\n" && break;
