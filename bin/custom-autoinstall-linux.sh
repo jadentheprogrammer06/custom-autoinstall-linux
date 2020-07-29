@@ -16,54 +16,183 @@
 ###
 
 ### *NOTE:
-# For the future:
-# *I may decide to implement CLI args/flags.
 #
-# Plan on using associative array for this to automate parts into apt-get functions where I wouldn't normally use unique commands.
-# Because of unique installation instructions needed for some programs I decided to just keep it simple.
-# 
-# *I plan on adding support for users to add in their own configs to automatically install. Would likely be done through a basic text or config file.
-#  *Alternatively, people are welcome to fork this code for their own usage. Add what is needed and works for you. Remove what doesn't. :)
-# 
-# *Variables are to be treated like Boolean values. Later on when we implement args and flags they may prove useful.
+# * I plan on adding support for users to add in their own configs to automatically install. Would likely be done through a basic csv text or config file.
+#  * Alternatively, people are welcome to fork this code for their own usage. Add what is needed and works for you. Remove what doesn't. :) 
 #
-# *Variable Boolean functionality in While loops may be bugged; If you try changing the value the code will still run as normally. 
-#  *It is more so treated as a design choice for future-iterations so the program can structurally code without rewriting everything.
 ###
 
-### DEFAULT VARIABLES
-INSTALL_BRAVE=1
-INSTALL_GIMP=1
-INSTALL_KRITA=1
-INSTALL_VIRTUALBOX=1
-INSTALL_ANKI=0
-INSTALL_MINECRAFT=1
-INSTALL_MINETEST=1
-INSTALL_RETROARCH=1
-INSTALL_PCSX2=1
-INSTALL_OKULAR=1
-INSTALL_OBS=1
-INSTALL_BLENDER=1
-INSTALL_AUDACITY=1
-INSTALL_VLC=1
-INSTALL_SYNCTHING=1
-INSTALL_ALACARTE=1
-INSTALL_TERMINATOR=1
-INSTALL_DOLPHIN=1
-INSTALL_VIM=1
-INSTALL_GIT=1
-INSTALL_SNAP=1
-INSTALL_FLATPAK=1
+### Default Boolean Variables for each Software.
+INSTALL_BRAVE=0
+INSTALL_YOUTUBEDL=0 # placeholder
+INSTALL_LIBREOFFICE=0 # placeholder, not added yet since Ubuntu should install it anyway. This is for those who choose minimal installation.
+
+# placeholders, Evernote alternatives
+INSTALL_SIMPLENOTE=0
+INSTALL_JOPLIN=0
+INSTALL_LAVERNA=0
+
+INSTALL_GIMP=0
+INSTALL_KRITA=0
+
+INSTALL_VIRTUALBOX=0 # placeholder
+INSTALL_ANKI=0 # placeholder
+
+INSTALL_MINECRAFT=0
+INSTALL_MINETEST=0
+INSTALL_RETROARCH=0
+INSTALL_PCSX2=0
+INSTALL_CITRA=0
+INSTALL_DOLPHIN=0
+INSTALL_STEAM=0
+INSTALL_LUTRIS=0
+INSTALL_DOOM=0
+INSTALL_TETRIS=0
+INSTALL_EMULATIONSTATION=0
+
+INSTALL_OKULAR=0 # placeholder
+INSTALL_OBS=0
+INSTALL_KDENLIVE=0 # placeholder
+INSTALL_BLENDER=0
+INSTALL_AUDACITY=0
+INSTALL_VLC=0
+INSTALL_SYNCTHING=0
+
+INSTALL_ALACARTE=0
+
+INSTALL_TERMINATOR=0
+INSTALL_VIM=0
+INSTALL_GIT=0
+
+# placeholders, code editors and IDEs
+INSTALL_ATOM=0
+INSTALL_PYCHARM=0 
+INSTALL_EMACS=0
+INSTALL_VSCODE=0
+INSTALL_SUBLIMETEXT=0
+
+# placeholders, networking utilities
+INSTALL_WIRESHARK=0
+INSTALL_PINGTOTEXT=0
+INSTALL_TRACEROUTE=0
+# placeholders, package managers
+INSTALL_SNAP=0
+INSTALL_FLATPAK=0
+# These are not planned to be enabled/added at the moment. Properietory garbage / potential spyware. You can still use web verisons anyways. Recommend installing in VM instead.
+INSTALL_DISCORD=0
+INSTALL_SPOTIFY=0
+
+
 SYNCTHING_IS_INSTALLED=0
-### Flag Variables [PLACEHOLDER]
-FLAG_INSTALL_GAMES=1
-FLAG_INSTALL_VIDEOEDITORS=1
-FLAG_INSTALL_DEVTOOLS=1
-FLAG_INSTALL_PHOTOEDITORS=1
-FLAG_INSTALL_ALL=1
-FLAG_INSTALL_WEB=1
-FLAG_INSTALL_PACKAGEMANAGERS=1
+### Default Flag Variables for each Category.
+FLAG_INSTALL_ALL=0
+FLAG_INSTALL_GAME=0
+FLAG_INSTALL_EMULATOR=0
+FLAG_INSTALL_DEVELOPMENT=0
+FLAG_INSTALL_VIDEO=0
+FLAG_INSTALL_IMAGE=0
+FLAG_INSTALL_NETWORKING=0
+FLAG_INSTALL_RECOMMENDED=0
+### Creating Categorized Indexed-Arrays (or "Lists" in other languages) for each program's boolean variable value. These arrays will be iterated through to enable each Boolean Variable.
+games_array=($INSTALL_RETROARCH $INSTALL_MINECRAFT $INSTALL_MINETEST $INSTALL_STEAM $INSTALL_PCSX2 $INSTALL_DOLPHIN $INSTALL_CITRA $INSTALL_LUTRIS $INSTALL_DOOM $INSTALL_TETRIS $INSTALL_ALACARTE $INSTALL_EMULATIONSTATION)
+emulators_array=($INSTALL_RETROARCH $INSTALL_PCSX2 $INSTALL_DOLPHIN $INSTALL_CITRA $INSTALL_TETRIS $INSTALL_DOOM $INSTALL_EMULATIONSTATION)
+videos_array=($INSTALL_OBS $INSTALL_KDENLIVE $INSTALL_AUDACITY $INSTALL_VLC)
+images_array=($INSTALL_GIMP $INSTALL_KRITA $INSTALL_VLC)
+networking_array=($INSTALL_WIRESHARK $INSTALL_PINGTOTEXT $INSTALL_TRACEROUTE)
+development_array=($INSTALL_TERMINATOR $INSTALL_VIM $INSTALL_GIT $INSTALL_ATOM $INSTALL_PYCHARM $INSTALL_EMACS $INSTALL_VSCODE $INSTALL_SUBLIMETEXT)
+recommended_array=($INSTALL_BRAVE $INSTALL_GIMP $INSTALL_VLC $INSTALL_YOUTUBEDL $INSTALL_SYNCTHING $INSTALL_ANKI $INSTALL_OKULAR $INSTALL_LIBREOFFICE)
 ###
+### FUNCTIONS : CHECK FOR FLAGS/CATEGORIES TO INSTALL
+function check_for_options()
+{
+# FUNCTION : DISPLAY OPTIONS
+function options_menu()
+{
+    printf "      Usage : $0 [<flag>]\n\n    FLAG        OPTIONS/INSTRUCTIONS\n\n    [-A or no-flags-supplied <Prompts installs for all available programs.>]\n    [-E <Prompts installs for all available game-emulation software.>]\n    [-G <Prompts install for all available gaming software.>]\n    [-D <Prompts installs for all development/coding software.>]\n    [-V <Prompts installs for all available video-editing software.>]\n    [-I <Prompts installs for all available image-editing software.>]\n    [-N <Prompts installs for all available networking utility software.>]\n    [-R <Prompts installs for recommended software that everyone should have installed.>]\n    [-h <Display this Menu for help.]\n\n"
+}
+
+FLAGS_USED=0 # boolean checks if flags are used.
+
+#If you specify <flag>: with colon it needs parameter.
+while getopts AGEDVINRh parm ; do
+case $parm in
+    A)
+        echo "Category selected: All available software."
+        FLAGS_USED=1
+        FLAG_INSTALL_ALL=0
+        ;;
+    G)
+        echo "Category selected: All available gaming software."
+        FLAGS_USED=1
+        FLAG_INSTALL_GAME=0
+        ;;
+    E)
+        echo "Category selected: All available game-emulation software."
+        FLAG_INSTALL_EMULATOR=0
+        FLAGS_USED=1
+        ;;
+    D)
+        echo "Category selected: All available development/coding software."
+        FLAG_INSTALL_DEVELOPMENT=0
+        FLAGS_USED=1
+        ;;
+    V)
+        echo "Category selected: All available video-editing software."
+        FLAG_INSTALL_VIDEO=0
+        FLAGS_USED=1
+        ;;
+    I)
+        echo "Category selected: All available image-editing software."
+        FLAG_INSTALL_IMAGE=0
+        FLAGS_USED=1
+        ;;
+    N)
+        echo "Category selected: All available networking utility software."
+        FLAG_INSTALL_NETWORKING=0
+        FLAGS_USED=1
+        ;;
+    R)
+        echo "Category selected: Recommended computer software to install."
+        FLAG_INSTALL_RECOMMENDED=0
+        FLAGS_USED=1
+        ;;
+    h)
+        options_menu
+        ;;
+    *)
+        options_menu
+        echo "Invalid Option. Try again."
+esac
+done
+
+if [[ $1 == '' ]]; then
+options_menu
+printf "\n\n    No flags supplied. We assume you want to prompt through all software."
+printf "\n\n        ENTER to continue. Ctrl-Z to Exit.\n" && read
+fi
+
+if [[ $FLAGS_USED == 1 ]]; then
+printf "\n\n    Flags supplied. Would you like to prompt through selected software categories?\n\n        ENTER to continue. Ctrl-Z to Exit.\n" && read
+fi
+
+shift $((OPTIND-1))
+
+}
+
+check_for_options # ran on start
+
+# FUNCTION : ENABLING INSTALLATION PROMPTS BY SELECTED CATEGORIES
+
+enabling_prompts() {
+
+
+
+
+
+}
+
+###### PROMPTING/INSTALLATION CODE. - May modify later for cleaner code. This is simple & works.
+
 
 ### Installing Snap. [PLACEHOLDER]
 
@@ -76,7 +205,7 @@ FLAG_INSTALL_PACKAGEMANAGERS=1
 ### Installing Brave browser.
 while [[ $INSTALL_BRAVE == 1 ]]
 do
-printf "\nWould you like to install Brave? (Better Chrome with more Privacy/Security)\n>>>"; read yesorno
+printf "\nWould you like to install Brave? (Better Chrome web-browser with more Privacy/Security)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
         printf "\nThat is not an option. [y]yes or [n]no."
     elif [[ $yesorno == "y"* ]]; then
