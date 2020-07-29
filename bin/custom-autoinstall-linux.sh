@@ -32,12 +32,11 @@
 ###
 
 ### DEFAULT VARIABLES
-# Includes placeholder values.
 INSTALL_BRAVE=1
 INSTALL_GIMP=1
 INSTALL_KRITA=1
 INSTALL_VIRTUALBOX=1
-INSTALL_ANKI=1
+INSTALL_ANKI=0
 INSTALL_MINECRAFT=1
 INSTALL_MINETEST=1
 INSTALL_RETROARCH=1
@@ -75,7 +74,7 @@ FLAG_INSTALL_PACKAGEMANAGERS=1
 ###
 
 ### Installing Brave browser.
-while [[ $INSTALL_BRAVE=1 ]]
+while [[ $INSTALL_BRAVE == 1 ]]
 do
 printf "\nWould you like to install Brave? (Better Chrome with more Privacy/Security)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -93,7 +92,7 @@ printf "\nWould you like to install Brave? (Better Chrome with more Privacy/Secu
 done
 ###
 ### Installing VIM
-while [[ $INSTALL_VIM=1 ]]
+while [[ $INSTALL_VIM == 1 ]]
 do
 printf "\nWould you like to install Vim? (Terminal Code-Editor program. Very useful for aspiring programmers and power-users alike.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -107,7 +106,7 @@ printf "\nWould you like to install Vim? (Terminal Code-Editor program. Very use
 done
 ###
 ### Installing GIT
-while [[ $INSTALL_GIT=1 ]]
+while [[ $INSTALL_GIT == 1 ]]
 do
 printf "\nWould you like to install Git? \n(Most popular version-control system for programmers. If running Linux Mint and planning to program you should install this. This is only if your distro does not have git installed by default.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -121,7 +120,7 @@ printf "\nWould you like to install Git? \n(Most popular version-control system 
 done
 ###
 ### Installing GIMP
-while [[ $INSTALL_GIMP=1 ]]
+while [[ $INSTALL_GIMP == 1 ]]
 do
 printf "\nWould you like to install GIMP? (Image Editor)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -135,7 +134,7 @@ printf "\nWould you like to install GIMP? (Image Editor)\n>>>"; read yesorno
 done
 ###
 ### Installing Krita
-while [[ $INSTALL_KRITA=1 ]]
+while [[ $INSTALL_KRITA == 1 ]]
 do
 printf "\nWould you like to install Krita? (Image Editor)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -150,7 +149,7 @@ done
 ###
 cd ~
 ### Installing Anki
-while [[ $INSTALL_ANKI=1 ]]
+while [[ $INSTALL_ANKI == 1 ]]
 do
 printf "\nWould you like to install Anki? (Useful for Studying; Flash Cards)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -164,7 +163,7 @@ printf "\nWould you like to install Anki? (Useful for Studying; Flash Cards)\n>>
 done
 ###
 ### Installing Minetest
-while [[ $INSTALL_MINETEST=1 ]]
+while [[ $INSTALL_MINETEST == 1 ]]
 do
 printf "\nWould you like to install Minetest? (Free & Open-Source Minecraft Clone)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -178,7 +177,7 @@ printf "\nWould you like to install Minetest? (Free & Open-Source Minecraft Clon
 done
 ###
 ### Installing Minecraft Bedrock Edition
-while [[ $INSTALL_MINECRAFT=1 ]]
+while [[ $INSTALL_MINECRAFT == 1 ]]
 do
 printf "\nWould you like to install Minecraft Bedrock Edition? \n(Linux port of Android. Requires copy of Google Play version; Is cross-platform compatible with Microsoft/Xbox Account.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -201,7 +200,7 @@ done
 ###
 
 ### Installing Alacarte
-while [[ $INSTALL_ALACARTE=1 ]]
+while [[ $INSTALL_ALACARTE == 1 ]]
 do
 printf "\nWould you like to install Alacarte? \n(Used to easily add executables to the home menu. This includes making a home menu shortcut for Minecraft Bedrock Edition.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -216,7 +215,7 @@ done
 ###
 
 ### Installing Minecraft Java (PC) Edition
-while [[ $INSTALL_MINECRAFT=1 ]]
+while [[ $INSTALL_MINECRAFT == 1 ]]
 do
 printf "\nWould you like to install Minecraft Java Edition? \n(Original MC Version, Native on Linux. Requires Mojang/Minecraft Account.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -234,7 +233,7 @@ done
 ###
 
 ### Installing Retroarch
-while [[ $INSTALL_RETROARCH=1 ]]
+while [[ $INSTALL_RETROARCH == 1 ]]
 do
 printf "\nWould you like to install Retroarch? (Game Emulation & Libraries)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -252,7 +251,7 @@ done
 ###
 
 ### Installing PCSX2
-while [[ $INSTALL_PCSX2=1 ]]
+while [[ $INSTALL_PCSX2 == 1 ]]
 do
 printf "\nWould you like to install PCSX2 Emulator? (Emulator for PlayStation2 games.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -292,7 +291,7 @@ done
 
 ### Installing Dolphin Emulator
 
-while [[ $INSTALL_DOLPHIN=1 ]]
+while [[ $INSTALL_DOLPHIN == 1 ]]
 do
 printf "\nWould you like to install Dolphin Emulator? (Emulator for GameCube & Wii games.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -312,7 +311,7 @@ done
 
 
 ### Installing VLC
-while [[ $INSTALL_VLC=1 ]]
+while [[ $INSTALL_VLC == 1 ]]
 do
 printf "\nWould you like to install VLC? (Popular Media Player)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -327,7 +326,7 @@ done
 ###
 cd ~
 ### Installing OBS
-while [[ $INSTALL_OBS=1 ]]
+while [[ $INSTALL_OBS == 1 ]]
 do
 printf "\nWould you like to install OBS? (Popular Video Editing & Streaming Software)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -346,7 +345,7 @@ done
 
 ### Installing Syncthing
 
-while [[ $INSTALL_SYNCTHING=1 ]]
+while [[ $INSTALL_SYNCTHING == 1 ]]
 do
 printf "\nWould you like to install Syncthing? \n(Useful software to sync data between your devices. Open-Source, Free, and Secure P2P connection. This is probably a better & private option than using proprietory cloud-backup services.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -366,7 +365,7 @@ done
 ###
 
 ### Installing Audacity
-while [[ $INSTALL_AUDACITY=1 ]]
+while [[ $INSTALL_AUDACITY == 1 ]]
 do
 printf "\nWould you like to install Audacity? \n(Audio-recording and Audio-editing software. Useful for video editors, content creators, sound-designers, and musicians alike.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -381,7 +380,7 @@ done
 ###
 
 ### Installing Blender
-while [[ $INSTALL_BLENDER=1 ]]
+while [[ $INSTALL_BLENDER == 1 ]]
 do
 printf "\nWould you like to install Blender? \n(Used for 3D Modeling. Probably useful for gamedevs & graphical design artists.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -396,7 +395,7 @@ done
 ###
 
 ### Installing Terminator
-while [[ $INSTALL_TERMINATOR=1 ]]
+while [[ $INSTALL_TERMINATOR == 1 ]]
 do
 printf "\nWould you like to install Terminator? (Terminal Emulator with some useful settings.)\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
@@ -415,7 +414,7 @@ done
 
 
 ### Ask User if they want to launch Syncthing. This is useful for new installs on devices. By running it at the same time as installing programs you "kill two birds with one stone".
-while [[ $SYNCTHING_IS_INSTALLED=1 ]]
+while [[ $SYNCTHING_IS_INSTALLED == 1 ]]
 do
 printf "\n\nAlmost Done. We think you installed Syncthing through this script. Would you like to launch syncthing to get your file syncing done with?\n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
