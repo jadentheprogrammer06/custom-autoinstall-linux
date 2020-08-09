@@ -29,6 +29,7 @@
 * **VirtualBox** - Virtualization for running work/test environments and distro-hopping.
 * **Wireshark** - Packet sniffing tool
 * **BalenaEtcher** - Flash ISOs to external drive.
+* **Okular** - PDF Viewer
 # *Confusion-Free PC-Gaming & Emulation!*
 * You can install common game emulator programs: 
   * **RetroArch - Emulates almost any retro/classic gaming console you need.**

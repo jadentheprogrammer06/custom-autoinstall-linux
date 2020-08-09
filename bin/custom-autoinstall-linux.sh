@@ -104,6 +104,7 @@ then
     PROGRAM="Wireshark (Network packet scanning utility.)"; INSTALL_STEPS='sudo apt install wireshark'; PromptInstall
     PROGRAM="BalenaEtcher (Flash ISO files to an external drive.)"; INSTALL_STEPS='wget https://github.com/balena-io/etcher/releases/download/v1.5.102/balena-etcher-electron-1.5.102-linux-x64.zip -P ~/Downloads/'; PromptInstall
     PROGRAM="GTKHash (Useful graphical utility for hash/checksum checking.)"; INSTALL_STEPS='sudo snap install gtkhash'; PromptInstall
+    PROGRAM="Okular (Useful PDF-viewer utility.)"; INSTALL_STEPS='sudo apt install okular'; PromptInstall
 fi
 install_category=0
 
