@@ -1,9 +1,10 @@
-# custom-autoinstall-linux - Program that easily installs Useful Linux Programs & PC Gaming/Emulation Software. No friction in your installation!
+# custom-autoinstall-linux
+***Program that easily installs Useful Linux Programs & PC Gaming/Emulation Software. No friction in your installation!***
 
 # ABOUT  
   **This program is primarily designed for AMD64 systems running UBUNTU.**
   * **However, People are free to download this and modify/fork it to suit their needs.**
-  * In the future, I plan on forking this program to be compatible with Raspberry Pi and its OS.
+  * **In the future, I plan on forking this program to be compatible with Raspberry Pi and its OS.**
 
 # Installation Instructions.   
   1. **Download this repository and extract the zip archive.**
@@ -39,7 +40,7 @@
   * **Minecraft - Voxel Sandbox Game** - (See Below!)
   * **Ltris - Linux Tetris Clone** (will be implemented later)
 * Automatically install recommended drivers and configurations. (Might be implemented later. This seems complicated)  
-# You can install All Minecraft Versions/games available right on linux, including:
+# install All Minecraft games available for Linux:
 * **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy. Has Crossplatform-Play and Consistent Performance.)
 * **Minecraft Java Edition for PC.** (*The original game*. Natively supported & Has Large Mod Support. No Crossplatform-play with consoles/bedrock.)
 * **FOSS Minecraft clone "minetest"** (Try it out sometime. It is fairly lightweight, has some mods, and most importantly is free.)
