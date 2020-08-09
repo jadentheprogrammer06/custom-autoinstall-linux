@@ -1,6 +1,7 @@
 # custom-autoinstall-linux - Program that easily batch-installs most commonly used Linux software/utilities & PC Gaming/Emulation Software. No friction in your installation!
 
-# Installation Instructions.
+# Installation Instructions. 
+  **This program is primarily designed for AMD64 systems running UBUNTU.**
   1. **Download this repository and extract the zip archive.**
   * ***OR git clone this repository, if you wish.***
   2. **Run this installation script:** ```./install-update-script.sh```
