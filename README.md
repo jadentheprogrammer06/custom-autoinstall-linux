@@ -4,7 +4,7 @@
 # About  
   **This program is primarily designed for AMD64 systems running UBUNTU.**
   * **However, People are free to download this and modify/fork it to suit their needs.**
-  * **In the future, I plan on forking this program to be compatible with Raspberry Pi and its OS.**
+  **I am currently also designing this program for Raspberry Pi and its official OS.**
 
 # Installation Instructions.   
   1. **Download this repository and extract the zip archive.**
@@ -15,7 +15,6 @@
   
   4. **Keep ```install-update-script.sh``` somewhere safe if you want to use it to update or remove your local install in the future.**
   * I recommend moving ```install-update-script.sh``` and/or ```custom-autoinstall-linux``` to an external hard drive for convenience sake when installing the program on a new computer or fresh Ubuntu install so you can get full usage out of your devices.
-  * If you know how you can manually install the program and modify it as you wish.
   
 ---------------------------------------------------
 
@@ -44,5 +43,13 @@
 * **Minecraft Java Edition for PC.** (*The original game*. Natively supported & Has Large Mod Support. No Crossplatform-play with consoles/bedrock.)
 * **FOSS Minecraft clone "minetest"** (Try it out sometime. It is fairly lightweight, has some mods, and most importantly is free.)
 
-# Known Bugs.
-* This will probably not work on other distros and systems, unless you fork and modify the code for that system.
+# *Raspberry Pi Version! Plan on including:*
+* Note: these are not yet supported.
+* Raspap (Trn your raspberry pi into an access point.)
+* SSH and VNC configuration within prompt. (SSH into terminal and remote access desktop.)
+* Minecraft Bedrock Edition
+* Emulation (Retropie)
+* Syncthing for Pi
+* Any multimedia/editing software that seems useful.
+* Minecraft Server software. (not a priority.)
+* Kodi / other "digital media centers" (not a priority.)
