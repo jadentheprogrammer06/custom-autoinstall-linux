@@ -37,17 +37,31 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
         fi
         done
     elif [[ $yesorno == "U"* ]]; then
-        printf "\nUpdating script in $INSTALL_PATH PATH directory...\n"
-        sudo rm $INSTALL_PATH/custom-autoinstall-linux # removes existing before updating.
-        mkdir ~/Downloads/temp-script-install/
-        cd ~/Downloads/temp-script-install/
-        wget $INSTALL_TEMP_ARCHIVE_URL
-        unzip ./master.zip
-        sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
-        cd ~/Downloads/
-        rm temp-script-install -r
-        printf "\nAttempted to update script. \n"
-        break
+        if [[ -f $INSTALL_PATH/custom-autoinstall-linux ]]; then
+            printf "\nUpdating script in $INSTALL_PATH PATH directory...\n"
+            sudo rm $INSTALL_PATH/custom-autoinstall-linux # removes existing before updating.
+            mkdir ~/Downloads/temp-script-install/
+            cd ~/Downloads/temp-script-install/
+            wget $INSTALL_TEMP_ARCHIVE_URL
+            unzip ./master.zip # if raspi is installed and update this
+            # will install this script but remove raspi FIX THIS.
+            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
+            cd ~/Downloads/
+            rm temp-script-install -r
+        elif [[ -f $INSTALL_PATH/custom-autoinstall-raspi ]]; then
+            printf "\nUpdating script in $INSTALL_PATH PATH directory...\n"
+            sudo rm $INSTALL_PATH/custom-autoinstall-raspi # removes existing before updating.
+            mkdir ~/Downloads/temp-script-install/
+            cd ~/Downloads/temp-script-install/
+            wget $INSTALL_TEMP_ARCHIVE_URL
+            unzip ./master.zip
+            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-raspi.sh $INSTALL_PATH/custom-autoinstall-raspi
+            cd ~/Downloads/
+            rm temp-script-install -r
+            printf "\nAttempted to update script. \n"
+        else
+            printf "\nNo script to update. HINT: Try installing script first. \n"
+        fi
     elif [[ $yesorno == "R"* ]]; then
         printf "\nRemoving script from $INSTALL_PATH directory...\n"
         [[ -f $INSTALL_PATH/custom-autoinstall-linux ]] && sudo rm $INSTALL_PATH/custom-autoinstall-linux && printf "\nAttempted to remove custom-autoinstall-linux script. \n" || printf "\ncustom-autoinstall-linux script was not detected in $INSTALL_PATH."
