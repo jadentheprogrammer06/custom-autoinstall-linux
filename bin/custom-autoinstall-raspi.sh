@@ -61,8 +61,9 @@ prompt_category=0
 printf "\n\nCategory: Recommended / Useful Software"
 PROGRAM="by each option in Recommended/Useful Software"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
-    echo "This is placeholder text."
 then
+    echo "This is placeholder text."
+
 fi
 install_category=0
 
