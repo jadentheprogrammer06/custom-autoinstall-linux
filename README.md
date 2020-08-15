@@ -4,6 +4,7 @@
 # About  
   **This program is primarily designed for AMD64 systems running UBUNTU.**
   * **However, People are free to download this and modify/fork it to suit their needs.**
+  
   **I am currently also designing this program for Raspberry Pi and its official OS.**
 
 # Installation Instructions.   
