@@ -9,32 +9,36 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
     elif [[ $yesorno == "I"* ]]; then
         while true
         do
-        printf "\nAre you running this program on Ubuntu AMD64 (Normal) or Raspbian (Raspberry Pi)?\n[ENTER/Default]Ubuntu AMD64 [R]Installs Raspberry Pi script.\n>>>"; read selectscript
-        if [[ $selectscript == "" ]]; then
-            printf "\nInstalling for Ubuntu AMD64 systems. \n"
-            printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
-            mkdir ~/Downloads/temp-script-install/
-            cd ~/Downloads/temp-script-install/
-            wget $INSTALL_TEMP_ARCHIVE_URL
-            unzip ./master.zip
-            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
-            cd ~/Downloads/
-            rm temp-script-install -r
-            break
-        elif [[ $selectscript == "R" ]]; then
-            printf "\nInstalling for Raspberry Pi systems.\n"
-            printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
-            mkdir ~/Downloads/temp-script-install/
-            cd ~/Downloads/temp-script-install/
-            wget $INSTALL_TEMP_ARCHIVE_URL
-            unzip ./master.zip
-            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-raspi.sh $INSTALL_PATH/custom-autoinstall-raspi
-            cd ~/Downloads/
-            rm temp-script-install -r
-            break
-        else
-            printf "\nThat is not an option. \n"
-        fi
+        printf "\nDetecting for Distro...\n"
+        VERSION=`awk '{print $1}' /etc/issue`
+        case "Ubuntu" in
+            $VERSION)
+                printf "\nInstalling for Ubuntu AMD64 systems. \n"
+                printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
+                mkdir ~/Downloads/temp-script-install/
+                cd ~/Downloads/temp-script-install/
+                wget $INSTALL_TEMP_ARCHIVE_URL
+                unzip ./master.zip
+                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
+                cd ~/Downloads/
+                rm temp-script-install -r
+                break
+            ;;
+        esac
+        case "Raspberry" in
+            $VERSION)
+                printf "\nInstalling for Raspberry Pi systems.\n"
+                printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
+                mkdir ~/Downloads/temp-script-install/
+                cd ~/Downloads/temp-script-install/
+                wget $INSTALL_TEMP_ARCHIVE_URL
+                unzip ./master.zip
+                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-raspi.sh $INSTALL_PATH/custom-autoinstall-raspi
+                cd ~/Downloads/
+                rm temp-script-install -r
+                break
+            ;;
+        esac
         done
     elif [[ $yesorno == "U"* ]]; then
         if [[ -f $INSTALL_PATH/custom-autoinstall-linux ]]; then
@@ -63,12 +67,11 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
             printf "\nNo script to update. HINT: Try installing script first. \n"
         fi
     elif [[ $yesorno == "R"* ]]; then
-        printf "\nRemoving script from $INSTALL_PATH directory...\n"
-        [[ -f $INSTALL_PATH/custom-autoinstall-linux ]] && sudo rm $INSTALL_PATH/custom-autoinstall-linux && printf "\nAttempted to remove custom-autoinstall-linux script. \n" || printf "\ncustom-autoinstall-linux script was not detected in $INSTALL_PATH."
-        [[ -f $INSTALL_PATH/custom-autoinstall-raspi ]] && sudo rm $INSTALL_PATH/custom-autoinstall-raspi && printf "\nAttempted to remove custom-autoinstall-raspi script. \n" || printf "\ncustom-autoinstall-raspi script was not detected in $INSTALL_PATH."
+        [[ -f $INSTALL_PATH/custom-autoinstall-linux ]] && sudo rm $INSTALL_PATH/custom-autoinstall-linux && printf "Removed custom-autoinstall-linux script. \n"
+        [[ -f $INSTALL_PATH/custom-autoinstall-raspi ]] && sudo rm $INSTALL_PATH/custom-autoinstall-raspi && printf "Removed custom-autoinstall-raspi script. \n"
         break
     elif [[ $yesorno == "N"* ]]; then
-        printf "\nNot installing/updating. Exiting script.\n" && break;
+        printf "\nNot installing/updating. Exiting script.\n" && break
     else
         printf "\nThat is not an option. \n"
     fi

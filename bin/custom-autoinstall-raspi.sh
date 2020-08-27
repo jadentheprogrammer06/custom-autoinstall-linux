@@ -58,44 +58,14 @@ prompt_category=0
 # where $PROGRAM is actually a category.
 
 # Recommended/Useful-Miscellaneous Programs go here. (Brave-browser, VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
-printf "\n\nCategory: Recommended / Useful Software"
-PROGRAM="by each option in Recommended/Useful Software"; prompt_category=1; PromptInstall
+printf "\n\nCategory: Useful Raspberry Pi Software."
+PROGRAM="by each option in Raspberry Pi Software"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     echo "This is placeholder text."
 
 fi
 install_category=0
-
-# Art Programs go here. (GIMP, Krita, Blender)
-printf "\n\nCategory: Art"
-PROGRAM="by each option in Art/Editing"; prompt_category=1; PromptInstall
-if [[ $install_category == 1 ]]
-then
-    echo "This is placeholder text."
-fi
-install_category=0
-
-# Video-Editing Programs go here. (OBS, Kdenlive, Audacity)
-printf "\n\nCategory: Video-Editing Programs"
-PROGRAM="by each option in Video-Editing"; prompt_category=1; PromptInstall
-if [[ $install_category == 1 ]]
-then
-    echo "This is placeholder text."
-fi
-install_category=0
-
-# Gaming Programs go here. (Retroarch, PCSX2, Citra, Dolphin, Minecraft Java & Bedrock, Minetest)
-printf "\n\nCategory: Gaming"
-PROGRAM="by each option in PC Gaming"; prompt_category=1; PromptInstall
-if [[ $install_category == 1 ]]
-then
-    echo "This is placeholder text."
-fi
-
-install_category=0
-
-# Programming / Developer programs go here. (Placeholder for later.)
 
 }
 
