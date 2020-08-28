@@ -1,4 +1,4 @@
-	#!/bin/bash
+#!/bin/bash
 INSTALL_TEMP_ARCHIVE_URL=https://github.com/jadentheprogrammer06/custom-autoinstall-linux/archive/master.zip
 INSTALL_PATH=/usr/local/bin
 while true
@@ -19,7 +19,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 cd ~/Downloads/temp-script-install/
                 wget $INSTALL_TEMP_ARCHIVE_URL
                 unzip ./master.zip
-                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
+                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linuxj
                 cd ~/Downloads/
                 rm temp-script-install -r
                 break
@@ -49,7 +49,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
             wget $INSTALL_TEMP_ARCHIVE_URL
             unzip ./master.zip # if raspi is installed and update this
             # will install this script but remove raspi FIX THIS.
-            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-linux.sh $INSTALL_PATH/custom-autoinstall-linux
+            sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linux
             cd ~/Downloads/
             rm temp-script-install -r
         elif [[ -f $INSTALL_PATH/custom-autoinstall-raspi ]]; then
