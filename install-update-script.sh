@@ -19,7 +19,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 cd ~/Downloads/temp-script-install/
                 wget $INSTALL_TEMP_ARCHIVE_URL
                 unzip ./master.zip
-                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linuxj
+                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linux
                 cd ~/Downloads/
                 rm temp-script-install -r
                 break
