@@ -79,7 +79,14 @@ then
     sudo apt update
     sudo apt install brave-browser    
     }
-    PROGRAM="Brave (Web Browser, similar to Chrome but better privacy/security.)"; multiplecommands=1; commands_function=BraveCommands; PromptInstall
+    PROGRAM="Brave (Web Browser, Chromium-based with better privacy/security.)"; multiplecommands=1; commands_function=BraveCommands; PromptInstall
+    ChromiumCommands() {
+    echo 'deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /' | sudo tee /etc/apt/sources.list.d/home-ungoogled_chromium.list > /dev/null
+    curl -s 'https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key' | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home-ungoogled_chromium.gpg > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y ungoogled-chromium
+    }
+    PROGRAM="Ungoogled Chromium (Web Browser, Google Chrome fork.)"; multiplecommands=1; commands_function=ChromiumCommands; PromptInstall
     SyncthingCommands() {
     sudo apt-get install apt-transport-https
     curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
@@ -98,7 +105,7 @@ then
     PROGRAM="Alacarte (Used to create custom applications-menu icons for programs and games which do not have any by default.)"; INSTALL_STEPS='sudo apt install alacarte'; PromptInstall
     PROGRAM="Terminator (Advanced Terminal Emulator with some useful settings.)"; INSTALL_STEPS='sudo apt install terminator'; PromptInstall
     VirtualboxCommands() {
-    wget https://download.virtualbox.org/virtualbox/6.1.12/virtualbox-6.1_6.1.12-139181~Ubuntu~eoan_amd64.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/virtualbox-6.1_6.1.12-139181~Ubuntu~eoan_amd64.deb
+    wget https://download.virtualbox.org/virtualbox/6.1.12/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb
     }
     PROGRAM="VirtualBox (OS Virtualization Software. Supports Linux, Windows, etc.)"; multiplecommands=1; commands_function=VirtualboxCommands; PromptInstall
     PROGRAM="Wireshark (Network packet scanning utility.)"; INSTALL_STEPS='sudo apt install wireshark'; PromptInstall
@@ -198,15 +205,17 @@ then
         . ~/.bashrc
         printf "\nMinecraft Bedrock Edition is installed in ~/usr/local/bin PATH directory. To run the launcher use MC-bedrock.AppImage in terminal. Will have to manually add program to applications menu using Alacarte."
     }
-    PROGRAM="Minecraft (Bedrock Edition, Unofficial Linux Port)"; multiplecommands=1; commands_function=MCBedrockCommands; PromptInstall
+    PROGRAM="Minecraft (Bedrock Edition, Unofficial Android -> Linux Port)"; multiplecommands=1; commands_function=MCBedrockCommands; PromptInstall
     MCJavaCommands() {
     sudo apt install default-jre #Need to install java runtime environment dependency.
+    sudo apt-get install aptitude
+    sudo aptitude install openjdk-8-jre #This is useful for older MC versions <1.12.
     sudo apt-get --fix-missing
     sudo apt-get install -f
     wget https://launcher.mojang.com/download/Minecraft.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/Minecraft.deb
     printf "\nMinecraft was automatically installed from the official .deb package located in your ~/Downloads folder. The game itself should be available from your application menu."
     }
-    PROGRAM="Minecraft (Java Edition, Original PC/Linux Version with Mods-compatibility.)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
+    PROGRAM="Minecraft (Java Edition, Original PC Version with Mods-compatibility.)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
     PROGRAM="Minetest (FOSS Minecraft Clone)"; INSTALL_STEPS='sudo snap install minetest'; PromptInstall
     PROGRAM="Ltris (FOSS Tetris Clone)"; INSTALL_STEPS="sudo apt install ltris"; PromptInstall
     

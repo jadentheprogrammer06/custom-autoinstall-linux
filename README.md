@@ -1,15 +1,15 @@
 # custom-autoinstall-linux
-***Program that easily installs Useful Linux Programs & PC Gaming/Emulation Software. No friction in your installation!***
+***Program that easily installs Useful Linux Programs & PC Gaming Software. No friction in your installation!***
 
 # About  
   **This program is primarily designed for AMD64 systems running UBUNTU.**
-  * **However, People are free to download this and modify/fork it to suit their needs.**
+  **People are free to download this and modify/fork it to suit their needs.**
   
-  **I am currently also designing this program for Raspberry Pi and its official OS.**
+  **I plan on adding Raspberry Pi support, and other distros in the future.**
 
 # Installation Instructions.   
-  1. **Download this repository and extract the zip archive.**
-  * ***OR git clone this repository, if you wish.***
+  1. **Download this repository and extract the zip archive. (or ```git clone```, its faster.)**
+
   2. **Run this installation script:** ```./install-update-script.sh```
   
   3. **The program is now available as a terminal command: ```custom-autoinstall-linux```. Run it to install whatever you need.**
@@ -21,6 +21,7 @@
 
 # *Batch Install Your Favorite Programs & Software!*
 * **Brave Browser** (Much better than Chrome. One of the smoothest and most privacy-respecting secure browsers!)
+* **Ungoogled Chromium** (Fork of Chromium.)
 * **Terminator** (Plan on automating custom-terminal add-ons later on)
 * **OBS, Audacity, Kdenlive** - Video Editing
 * **GIMP, Krita** - Image Editors
@@ -39,9 +40,9 @@
 * You can install Linux-supported PC gaming software:
   * **Steam - Linux PC Gaming.**
   * **Ltris - Linux Tetris Clone**
-# *Install All Minecraft games available for Linux:*
+# *Install All Minecraft versions available for Linux:*
 * **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy. Has Crossplatform-Play and Consistent Performance.)
-* **Minecraft Java Edition for PC.** (*The original game*. Natively supported & Has Large Mod Support. No Crossplatform-play with consoles/bedrock.)
+* **Minecraft Java Edition for PC.** (*The original version*. Natively supported & Has Large Mod Support.)
 * **FOSS Minecraft clone "minetest"** (Try it out sometime. It is fairly lightweight, has some mods, and most importantly is free.)
 
 # *Raspberry Pi Version! Plan on including:*
