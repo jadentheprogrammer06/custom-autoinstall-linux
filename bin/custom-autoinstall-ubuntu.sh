@@ -1,16 +1,8 @@
 #!/bin/bash
-# NEEDS IMPROVED LATER
-
-# Here I take my custom-autoinstall-linux script and attempt to make the code cleaner, using functions. 
-# This is a simple solution and just works. Previously I was just copying code and had tons of weird variables and "junk code".
-# Only have to worry about complicated code instructions inside of quotes being read in subscript. Be careful with that.
 #
 # I designed this program (Originally) for Ubuntu/AMD64 and personal usage.
 #
-#  Just fork the code and add in your own instructions if you want to add/remove programs or make it compatible with your system you want to use it on.
-#
-#
-# In the future I plan on making the program more modular if possible and making settings easily importable from some kind of formatted file. (i.e csv) To modify the program you'd just have to create different files for your system's distro and architecture.
+# You can make a fork and modify this code to suit your needs or make a separate script for your linux distro.
 
 ### EXAMPLE CODE (for quick one-line program installs.)
 #install_category=0
@@ -33,7 +25,7 @@
 # wget https://this-is-the-location-of-our-package/package.deb -P ~/Downloads/
 # sudo dpkg -i ~/Downloads/package.deb
 # }
-# PROGRAM="Third party software"; multiplecommands=1; commands_function=ProgramCommands; PromptInstal
+# PROGRAM="Third party software"; multiplecommands=1; commands_function=ProgramCommands; PromptInstall
 #
 ###
 
@@ -65,7 +57,7 @@ prompt_category=0
 # Installation steps for programs are put into categories using If loops.
 # where $PROGRAM is actually a category.
 
-# Recommended/Useful-Miscellaneous Programs go here. (Brave-browser, VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
+# Recommended/Useful-Miscellaneous Programs go here. (Brave-browser, Chromium, VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
 printf "\n\nCategory: Recommended / Useful Software"
 PROGRAM="by each option in Recommended/Useful Software"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
@@ -103,7 +95,6 @@ then
     PROGRAM="Anki (Flash Cards. Flexible & Efficient Studying.)"; multiplecommands=1; commands_function=AnkiCommands; PromptInstall
     PROGRAM="Syncthing (Can be used to Sync your files across all devices. Respects your privacy and decisions.)"; multiplecommands=1; commands_function=SyncthingCommands; PromptInstall
     PROGRAM="Alacarte (Used to create custom applications-menu icons for programs and games which do not have any by default.)"; INSTALL_STEPS='sudo apt install alacarte'; PromptInstall
-    PROGRAM="Terminator (Advanced Terminal Emulator with some useful settings.)"; INSTALL_STEPS='sudo apt install terminator'; PromptInstall
     VirtualboxCommands() {
     wget https://download.virtualbox.org/virtualbox/6.1.12/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb
     }
@@ -117,7 +108,7 @@ install_category=0
 
 # Art Programs go here. (GIMP, Krita, Blender)
 printf "\n\nCategory: Art"
-PROGRAM="by each option in Art/Editing"; prompt_category=1; PromptInstall
+PROGRAM="by each option in Art"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     PROGRAM="GIMP (FOSS Image Editor)"; INSTALL_STEPS='sudo apt install gimp'; PromptInstall
@@ -127,8 +118,8 @@ fi
 install_category=0
 
 # Video-Editing Programs go here. (OBS, Kdenlive, Audacity)
-printf "\n\nCategory: Video-Editing Programs"
-PROGRAM="by each option in Video-Editing"; prompt_category=1; PromptInstall
+printf "\n\nCategory: Video-Editing/Recording"
+PROGRAM="by each option in Video-Editing/Recording"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     OBSCommands() {
@@ -215,18 +206,42 @@ then
     wget https://launcher.mojang.com/download/Minecraft.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/Minecraft.deb
     printf "\nMinecraft was automatically installed from the official .deb package located in your ~/Downloads folder. The game itself should be available from your application menu."
     }
-    PROGRAM="Minecraft (Java Edition, Original PC Version with Mods-compatibility.)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
+    PROGRAM="Minecraft (Java Edition, Original PC Version)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
     PROGRAM="Minetest (FOSS Minecraft Clone)"; INSTALL_STEPS='sudo snap install minetest'; PromptInstall
     PROGRAM="Ltris (FOSS Tetris Clone)"; INSTALL_STEPS="sudo apt install ltris"; PromptInstall
-    
-# Programming / Developer programs go here. (Placeholder for later.)
-
-
-
-
 fi
+install_category=0
+
+# Programming / Developer programs go here. (Placeholder for later.)
+printf "\n\nCategory: Programming"
+PROGRAM="by each option in Programming software"; prompt_category=1; PromptInstall
+if [[ $install_category == 1 ]]
+then
+    TerminalCustomizationCommands() {
+    DOTFILES_REPO="https://github.com/jadentheprogrammer06/dotfiles"
+    echo "Installing Xdo & Devour; Can use with aliases to force terminal to swallow/hide when launching programs."
+    echo "This is useful with creating program aliases and menu shortcuts."
+    sudo apt-get install xdo
+    git clone https://github.com/salman-abedin/devour.git
+    sudo mv devour/devour /usr/local/bin
+    sudo rm devour -r
+    echo "Installing terminator. Similar to default GNOME terminal but offers much more customization."
+    sudo apt-get install terminator
+    echo "Installing fonts-powerline"
+    sudo apt-get install fonts-powerline
+    echo "Installing dotfiles from the provided repository."
+    sudo rm ~/.bashrc
+    git clone $DOTFILES_REPO
+    sudo cp -R dotfiles/files/.bashrc dotfiles/files/.bash_aliases dotfiles/files/.vimrc dotfiles/files/.nanorc dotfiles/files/.config/ /home/user/ 
+    sudo rm dotfiles -r
+    . ~/.bashrc
+    }
+    PROGRAM="Terminal-Emulator Customizations"; multiplecommands=1; commands_function=TerminalCustomizationCommands; PromptInstall
+    PROGRAM="Atom IDE"; INSTALL_STEPS="sudo snap install atom --classic"; PromptInstall
+    PROGRAM="PyCharm IDE"; INSTALL_STEPS="sudo snap install pycharm-community --classic"; PromptInstall
+fi
+install_category=0
 
 }
 
 Main
-

@@ -21,7 +21,6 @@
 # *Batch Install Your Favorite Programs & Software!*
 * **Brave Browser** - Chromium-based browser. It is very smooth, privacy-respecting & secure.
 * **Ungoogled Chromium** - Fork of Chromium with minimal Google.
-* **Terminator** - Standard terminal emulator with customization features.
 * **OBS, Audacity, Kdenlive** - Video Editing
 * **GIMP, Krita** - Image Editors
 * **Blender** - 3D Modeling
@@ -30,6 +29,10 @@
 * **Wireshark** - Packet sniffer
 * **BalenaEtcher** - Flash ISOs to external drive
 * **Okular** - PDF Viewer
+* **Atom IDE**
+* **PyCharm IDE**
+* **Terminator & Custom Terminal Configuration**
+
 # *Confusion-Free PC-Gaming & Emulation!*
 * You can install common game emulator programs: 
   * **RetroArch - Emulates almost any retro/classic gaming console you need.**
