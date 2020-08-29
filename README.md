@@ -18,31 +18,41 @@
   
 ---------------------------------------------------
 
-# *Batch Install Your Favorite Programs & Software!*
+# Batch Install Your Favorite Programs & Software!
+Web-browsers:
 * **Brave Browser** - Chromium-based browser. It is very smooth, privacy-respecting & secure.
 * **Ungoogled Chromium** - Fork of Chromium with minimal Google.
-* **OBS, Audacity, Kdenlive** - Video Editing
-* **GIMP, Krita** - Image Editors
-* **Blender** - 3D Modeling
-* **Syncthing** - Easily sync files between your devices. Free & Open-Source. Is more private/secure than cloud-storage backups. Highly Recommend.
+
+Video-recording-and-editing:
+* **OBS, Audacity, Kdenlive**
+
+Image-editing and Art:
+* **GIMP, Krita**
+* **Blender**
+
+Miscellaneous Utilities:
+* **Syncthing** - Easily sync files between your devices. Free & Open-Source. Is more private/secure than cloud-storage backups.
 * **VirtualBox** - OS Virtualization
 * **Wireshark** - Packet sniffer
 * **BalenaEtcher** - Flash ISOs to external drive
 * **Okular** - PDF Viewer
+* **Alacarte** - Allows you to create Launcher shortcuts to programs.
+
+Programming & Coding:
 * **Atom IDE**
 * **PyCharm IDE**
 * **Terminator & Custom Terminal Configuration**
 
-# *Confusion-Free PC-Gaming & Emulation!*
-* You can install common game emulator programs: 
-  * **RetroArch - Emulates almost any retro/classic gaming console you need.**
-  * **Dolphin - Emulates GCN/Wii.**
-  * **PCSX2 - Emulates PS2.**
-  * **Citra - Emulates 3DS.**
-* You can install Linux-supported PC gaming software:
-  * **Steam - Linux PC Gaming.**
-  * **Ltris - Linux Tetris Clone**
-* *Install All Minecraft versions available for Linux:*
-  * **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy.)
-  * **Minecraft Java Edition for PC.** (*The original version*. Natively supported & Has Large Mod Support.)
-  * **FOSS Minecraft clone "minetest"**
+# Confusion-Free PC-Gaming & Emulation!
+You can install Linux-supported PC gaming software:
+* **Steam - Linux PC Gaming.**
+* **Ltris - Linux Tetris Clone**
+* **Minecraft Java Edition** (*The original version*. Natively supported & Has Large Mod Support.)
+* **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy.)
+* **Minetest**
+
+You can install common game emulator programs: 
+* **RetroArch - Emulates almost any retro/classic gaming console you need.**
+* **Dolphin - Emulates GCN/Wii.**
+* **PCSX2 - Emulates PS2.**
+* **Citra - Emulates 3DS.**
