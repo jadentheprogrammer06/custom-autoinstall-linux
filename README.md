@@ -27,10 +27,17 @@ Web-Browsers & Online-Media:
 * **Discord** - *Proprietory, may contain spyware*
 
 Video-recording-and-editing:
-* **OBS, Audacity, Kdenlive**
+* **OBS**
+* **Kazam**
+* **Audacity**
+* **Kdenlive**
+* **OpenShot**
 
 Image-editing and Art:
-* **GIMP, Krita**
+* **GIMP**
+* **Krita**
+* **Inkscape**
+* **Pinta**
 * **Blender**
 
 Miscellaneous Utilities:

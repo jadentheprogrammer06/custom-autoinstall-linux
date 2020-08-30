@@ -126,8 +126,10 @@ CATEGORY="Category: Art"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
-    PROGRAM="GIMP (FOSS Image Editor)"; INSTALL_STEPS='sudo apt-get install gimp'; PromptInstall
-    PROGRAM="Krita / Image Editor"; INSTALL_STEPS='sudo snap install krita'; PromptInstall
+    PROGRAM="GIMP (Image Editor)"; INSTALL_STEPS='sudo apt-get install gimp'; PromptInstall
+    PROGRAM="Krita (Image Editor, Digital Art)"; INSTALL_STEPS='sudo snap install krita'; PromptInstall
+    PROGRAM="InkScape (Image Editor, Digital Art)"; INSTALL_STEPS="sudo apt-get install inkscape"; PromptInstall
+    PROGRAM="Pinta (Image Editor, similar to paint.net)"; INSTALL_STEPS="sudo apt-get install pinta"; PromptInstall
     PROGRAM="Blender (3D Models Software)"; INSTALL_STEPS='sudo snap install blender'; PromptInstall
 fi
 install_category=0
@@ -144,9 +146,15 @@ then
     sudo apt install obs-studio
     }
     PROGRAM="OBS (FOSS Video-Recording/Streaming)"; multiplecommands=1; commands_function=OBSCommands; PromptInstall
+    PROGRAM="Kazam (Simplistic Video-Recording)"; INSTALL_STEPS="sudo apt-get install kazam"; PromptInstall
     PROGRAM="Audacity (Mic/Audio-Recording)"; INSTALL_STEPS='sudo snap install audacity'; PromptInstall
     PROGRAM="Kdenlive (Video-Editing)"; INSTALL_STEPS='sudo snap install kdenlive'; PromptInstall
-    
+    OpenshotLatestCommands() {
+    sudo add-apt-repository ppa:openshot.developers/ppa
+    sudo apt update
+    sudo apt install openshot-qt    
+    }
+    PROGRAM="OpenShot (Video-Editing)"; multiplecommands=1; commands_function=OpenshotLatestCommands; PromptInstall
 fi
 install_category=0
 
