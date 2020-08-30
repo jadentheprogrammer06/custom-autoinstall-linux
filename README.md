@@ -19,12 +19,14 @@
 ---------------------------------------------------
 
 # Batch Install Your Favorite Programs & Software!
-Web-Browsers & Online-Media:
+Web-Browsers and tools:
 * **Brave Browser** - Chromium-based browser. It is very smooth, privacy-respecting & secure.
 * **Ungoogled Chromium** - Fork of Chromium with minimal Google.
 * **Youtube-dl**
-* **Spotify** - *Proprietory, may contain spyware*
-* **Discord** - *Proprietory, may contain spyware*
+
+Online Consoomption:
+* **Spotify** - *Proprietory, may be considered spyware*
+* **Discord** - *Proprietory, may be considered spyware*
 
 Video-recording-and-editing:
 * **OBS**

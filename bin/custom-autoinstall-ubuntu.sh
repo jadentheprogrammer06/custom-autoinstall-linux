@@ -28,37 +28,110 @@
 # PROGRAM="Third party software"; multiplecommands=1; commands_function=ProgramCommands; PromptInstall
 #
 ###
+# help function
+function show_usage () {
+    printf "Usage: $0 [options [parameters]]\n"
+    printf "\nOptions:\n"
+    printf " -A|-a|--install-all, Installs all available software.\n"
+    printf " -C|-c|--install-category [categories], Installs from provided categories. (See below.)\nNOTE: Can only install one category at the moment due to some bugs.\n"
+    printf " -H|-h|--help, displays Help page with available categories."
+    printf "\n\nCategories:\n web-browsing\n utilities\n image-editing\n video-editing\n gaming\n programming\n social-media\n"
 
+    return 0
+}
+
+
+
+# array to check for which categories to install through, when argument is passed through the shell.
+declare -a category_list
+# checking for arguments/parameters.
+while [ ! -z "$1" ]; do
+  case "$1" in
+     --install-all|-A|-a)
+         echo "Installing all available software."
+         category_list="web-browsing utilities image-editing video-editing gaming programming social-media"
+         ;;
+     --category|-C|-c)
+         shift
+         iterable=0
+         for parameter in $@
+         do
+         case $parameter in
+             web-browsing|utilities|image-editing|video-editing|gaming|programming|social-media)
+                printf "\nInstalling from category $parameter\nWARNING: can not install more than one category at the moment, unless using --install-all. Sorry."
+                categories_provided=1
+                category_list+=" ${parameter}"
+                ;;
+             *)
+                echo "error: $parameter is not an available category. use --help to view available categories." && exit
+                ;;
+         esac
+         done
+         [[ $1 == "" ]] && echo "error: no category provided. use --help to view available categories." && exit
+         ;;
+     --help|-H|-h)
+        shift
+        echo "Displaying help page."
+        show_usage
+        exit
+        ;;
+     *)
+        [[ $categories_provided != 1 ]] && echo "error: $1 is invalid argument. use --help for available input options."
+        exit
+        ;;
+  esac
+shift
+done
 
 
 PromptInstall() {
 RunPrompt=1
 while [[ $RunPrompt == 1 ]]
 do
-printf "\nWould you like to install $PROGRAM? \n>>>"; read yesorno
+#    if [[ $prompt_category == 1 ]] && [[ $categories_provided == 1 ]]; then
+#        for parameter in $@
+#        do
+#        [[ $parameter == $CATEGORY ]] && category_is_same=1
+#        done
+#    fi
+#    
+    for item in $category_list
+    do
+        case $item in
+            ${CATEGORY})
+                printf "\nYou passed in this category as an argument using the shell. Installing all programs available in this category.\n"
+                install_all_category=1
+                ;;
+        esac
+    done
+    
+    
+    [[ $install_all_category != 1 ]] && printf "\nWould you like to install $PROGRAM? \n>>>" && read yesorno || yesorno="y"
+    
     if [[ $yesorno == "" ]]; then
         printf "\nThat is not an option. [y]yes or [n]no. (lowercase)"
     elif [[ $yesorno == "y"* ]]; then
-        [[ $prompt_category == 1 ]] && printf "\nPrompting you through software in ${CATEGORY}...\n" || printf "\nAttempting to install $PROGRAM...\n"
+        [[ $prompt_category == 1 ]] && [[ $install_all_category != 1 ]] && printf "\nPrompting you through software in ${CATEGORY}...\n" || printf "\nAttempting to install $PROGRAM...\n"
         [[ $multiplecommands != 1 ]] && $INSTALL_STEPS || $commands_function; RunPrompt=0
-        [[ $prompt_category == 1 ]] && install_category=1 && RunPrompt=0 || install_category=0
+        [[ $prompt_category == 1 ]] && install_category=1 && RunPrompt=0
         prompt_category=0; multiplecommands=0; INSTALL_STEPS='echo'; # need to reset to 0 so it doesn't glitch out.
     elif [[ $yesorno == "n"* ]]; then
         multiplecommands=0; INSTALL_STEPS='echo';
-        [[ $prompt_category == 1 ]] && printf "\nSkipping ${CATEGORY}\n" && prompt_category=0 && RunPrompt=0 || printf "\nNot installing $PROGRAM\n" && RunPrompt=0
+        [[ $prompt_category == 1 ]] && printf "\nSkipping category ${CATEGORY}\n" && prompt_category=0 && RunPrompt=0 || printf "\nNot installing $PROGRAM\n" && RunPrompt=0
     fi
 done
 }
 
 
 Main() {
+[[ $1 == "" ]] && printf "\nGoing through standard wizard/prompt.\nUse --help to view help page for more options.\n"
 install_category=0
 prompt_category=0
 # Installation steps for programs are put into categories using If loops.
 # where $PROGRAM is actually a category.
 
 # Web-browser programs, and web-media software goes here. (Brave, Ungoogled-Chromium, Youtube-dl)
-CATEGORY="Category: Web-browsing and Online Media"
+CATEGORY="web-browsing"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
@@ -82,18 +155,25 @@ then
     sudo chmod a+rx /usr/local/bin/youtube-dl
     }
     PROGRAM="Youtube-dl (Program for downloading videos/audio)"; multiplecommands=1; commands_function=ytdlCommands; PromptInstall
+fi
+install_category=0
+
+# Social-Media / Proprietory Online Consoomption goes here. (Spotify, Discord)
+CATEGORY="social-media"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
+if [[ $install_category == 1 ]]
+then
     PROGRAM="Spotify (Music Streaming, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install spotify"; PromptInstall
     PROGRAM="Discord (Chat for Gamers, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install discord"; PromptInstall
 fi
 install_category=0
 
-# Useful-Miscellaneous Programs go here. (VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
-CATEGORY="Category: Useful Software"
+# "Utilties" / miscellaneous programs go here. (VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
+CATEGORY="utilities"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     PROGRAM="VLC (Video/Music/DVD Player)"; INSTALL_STEPS='sudo snap install vlc'; PromptInstall
-    PROGRAM="GIMP (Image Editor)"; INSTALL_STEPS='sudo apt install gimp'; PromptInstall
     SyncthingCommands() {
     sudo apt-get install apt-transport-https
     curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
@@ -121,8 +201,8 @@ then
 fi
 install_category=0
 
-# Art Programs go here. (GIMP, Krita, Blender)
-CATEGORY="Category: Art"
+# Image-Editing / Digital-Art Programs go here. (GIMP, Krita, InkScape, Pinta, Blender)
+CATEGORY="image-editing"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
@@ -135,7 +215,7 @@ fi
 install_category=0
 
 # Video-Editing Programs go here. (OBS, Kdenlive, Audacity)
-CATEGORY="Category: Video-Editing/Recording"
+CATEGORY="video-editing"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
@@ -159,7 +239,7 @@ fi
 install_category=0
 
 # Gaming Programs go here. (Retroarch, PCSX2, Citra, Dolphin, Minecraft Java & Bedrock, Minetest)
-CATEGORY="Category: Gaming"
+CATEGORY="gaming"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
@@ -242,8 +322,8 @@ then
 fi
 install_category=0
 
-# Programming / Developer programs go here. (Placeholder for later.)
-CATEGORY="Category: Programming"
+# Programming / Developer programs go here. (Terminator, Terminal-Customizations, Atom IDE, PyCharm IDE, Cool Retro Terminal)
+CATEGORY="programming"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
@@ -279,4 +359,4 @@ install_category=0
 
 }
 
-Main
+Main $category_list
