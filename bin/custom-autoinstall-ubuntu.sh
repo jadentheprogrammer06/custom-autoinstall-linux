@@ -37,15 +37,15 @@ while [[ $RunPrompt == 1 ]]
 do
 printf "\nWould you like to install $PROGRAM? \n>>>"; read yesorno
     if [[ $yesorno == "" ]]; then
-        printf "\nThat is not an option. [y]yes or [n]no."
+        printf "\nThat is not an option. [y]yes or [n]no. (lowercase)"
     elif [[ $yesorno == "y"* ]]; then
-        printf "\nAttempting to install $PROGRAM...\n"
-        [[ $multiplecommands != 1 ]] && $INSTALL_STEPS || $commands_function
+        [[ $prompt_category == 1 ]] && printf "\nPrompting you through software in ${CATEGORY}...\n" || printf "\nAttempting to install $PROGRAM...\n"
+        [[ $multiplecommands != 1 ]] && $INSTALL_STEPS || $commands_function; RunPrompt=0
         [[ $prompt_category == 1 ]] && install_category=1 && RunPrompt=0 || install_category=0
         prompt_category=0; multiplecommands=0; INSTALL_STEPS='echo'; # need to reset to 0 so it doesn't glitch out.
     elif [[ $yesorno == "n"* ]]; then
-        prompt_category=0; multiplecommands=0; INSTALL_STEPS='echo';
-        printf "\nNot installing $PROGRAM\n" && RunPrompt=0
+        multiplecommands=0; INSTALL_STEPS='echo';
+        [[ $prompt_category == 1 ]] && printf "\nSkipping ${CATEGORY}\n" && prompt_category=0 && RunPrompt=0 || printf "\nNot installing $PROGRAM\n" && RunPrompt=0
     fi
 done
 }
@@ -57,13 +57,11 @@ prompt_category=0
 # Installation steps for programs are put into categories using If loops.
 # where $PROGRAM is actually a category.
 
-# Recommended/Useful-Miscellaneous Programs go here. (Brave-browser, Chromium, VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
-printf "\n\nCategory: Recommended / Useful Software"
-PROGRAM="by each option in Recommended/Useful Software"; prompt_category=1; PromptInstall
+# Web-browser programs, and web-media software goes here. (Brave, Ungoogled-Chromium, Youtube-dl)
+CATEGORY="Category: Web-browsing and Online Media"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
-    PROGRAM="VLC (FOSS Video/Music/DVD Player)"; INSTALL_STEPS='sudo snap install vlc'; PromptInstall
-    PROGRAM="GIMP (FOSS Image Editor)"; INSTALL_STEPS='sudo apt install gimp'; PromptInstall
     BraveCommands() {
     sudo apt install apt-transport-https curl
     curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
@@ -78,7 +76,24 @@ then
     sudo apt-get update
     sudo apt-get install -y ungoogled-chromium
     }
-    PROGRAM="Ungoogled Chromium (Web Browser, Google Chrome fork.)"; multiplecommands=1; commands_function=ChromiumCommands; PromptInstall
+    PROGRAM="Ungoogled Chromium (Web Browser, Chromium fork with less Google.)"; multiplecommands=1; commands_function=ChromiumCommands; PromptInstall
+    ytdlCommands() {
+    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+    sudo chmod a+rx /usr/local/bin/youtube-dl
+    }
+    PROGRAM="Youtube-dl (Program for downloading videos/audio)"; multiplecommands=1; commands_function=ytdlCommands; PromptInstall
+    PROGRAM="Spotify (Music Streaming, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install spotify"; PromptInstall
+    PROGRAM="Discord (Chat for Gamers, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install discord"; PromptInstall
+fi
+install_category=0
+
+# Useful-Miscellaneous Programs go here. (VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
+CATEGORY="Category: Useful Software"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
+if [[ $install_category == 1 ]]
+then
+    PROGRAM="VLC (Video/Music/DVD Player)"; INSTALL_STEPS='sudo snap install vlc'; PromptInstall
+    PROGRAM="GIMP (Image Editor)"; INSTALL_STEPS='sudo apt install gimp'; PromptInstall
     SyncthingCommands() {
     sudo apt-get install apt-transport-https
     curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
@@ -94,32 +109,32 @@ then
     }
     PROGRAM="Anki (Flash Cards. Flexible & Efficient Studying.)"; multiplecommands=1; commands_function=AnkiCommands; PromptInstall
     PROGRAM="Syncthing (Can be used to Sync your files across all devices. Respects your privacy and decisions.)"; multiplecommands=1; commands_function=SyncthingCommands; PromptInstall
-    PROGRAM="Alacarte (Used to create custom applications-menu icons for programs and games which do not have any by default.)"; INSTALL_STEPS='sudo apt install alacarte'; PromptInstall
+    PROGRAM="Alacarte (Used to create custom applications-menu icons for programs and games which do not have any by default.)"; INSTALL_STEPS='sudo apt-get install alacarte'; PromptInstall
     VirtualboxCommands() {
     wget https://download.virtualbox.org/virtualbox/6.1.12/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/virtualbox-6.1_6.1.12-139181_Ubuntu_eoan_amd64.deb
     }
     PROGRAM="VirtualBox (OS Virtualization Software. Supports Linux, Windows, etc.)"; multiplecommands=1; commands_function=VirtualboxCommands; PromptInstall
-    PROGRAM="Wireshark (Network packet scanning utility.)"; INSTALL_STEPS='sudo apt install wireshark'; PromptInstall
+    PROGRAM="Wireshark (Network packet scanning utility.)"; INSTALL_STEPS='sudo apt-get install wireshark'; PromptInstall
     PROGRAM="BalenaEtcher (Flash ISO files to an external drive.)"; INSTALL_STEPS='wget https://github.com/balena-io/etcher/releases/download/v1.5.102/balena-etcher-electron-1.5.102-linux-x64.zip -P ~/Downloads/'; PromptInstall
     PROGRAM="GTKHash (Useful graphical utility for hash/checksum checking.)"; INSTALL_STEPS='sudo snap install gtkhash'; PromptInstall
-    PROGRAM="Okular (Useful PDF-viewer utility.)"; INSTALL_STEPS='sudo apt install okular'; PromptInstall
+    PROGRAM="Okular (Useful PDF-viewer utility.)"; INSTALL_STEPS='sudo apt-get install okular'; PromptInstall
 fi
 install_category=0
 
 # Art Programs go here. (GIMP, Krita, Blender)
-printf "\n\nCategory: Art"
-PROGRAM="by each option in Art"; prompt_category=1; PromptInstall
+CATEGORY="Category: Art"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
-    PROGRAM="GIMP (FOSS Image Editor)"; INSTALL_STEPS='sudo apt install gimp'; PromptInstall
+    PROGRAM="GIMP (FOSS Image Editor)"; INSTALL_STEPS='sudo apt-get install gimp'; PromptInstall
     PROGRAM="Krita / Image Editor"; INSTALL_STEPS='sudo snap install krita'; PromptInstall
     PROGRAM="Blender (3D Models Software)"; INSTALL_STEPS='sudo snap install blender'; PromptInstall
 fi
 install_category=0
 
 # Video-Editing Programs go here. (OBS, Kdenlive, Audacity)
-printf "\n\nCategory: Video-Editing/Recording"
-PROGRAM="by each option in Video-Editing/Recording"; prompt_category=1; PromptInstall
+CATEGORY="Category: Video-Editing/Recording"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     OBSCommands() {
@@ -136,8 +151,8 @@ fi
 install_category=0
 
 # Gaming Programs go here. (Retroarch, PCSX2, Citra, Dolphin, Minecraft Java & Bedrock, Minetest)
-printf "\n\nCategory: Gaming"
-PROGRAM="by each option in PC Gaming"; prompt_category=1; PromptInstall
+CATEGORY="Category: Gaming"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     PROGRAM="Retroarch (Retro/Handheld Console Emulation)"; INSTALL_STEPS='sudo snap install retroarch'; PromptInstall
@@ -208,13 +223,20 @@ then
     }
     PROGRAM="Minecraft (Java Edition, Original PC Version)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
     PROGRAM="Minetest (FOSS Minecraft Clone)"; INSTALL_STEPS='sudo snap install minetest'; PromptInstall
-    PROGRAM="Ltris (FOSS Tetris Clone)"; INSTALL_STEPS="sudo apt install ltris"; PromptInstall
+    PROGRAM="Ltris (FOSS Tetris Clone)"; INSTALL_STEPS="sudo apt-get install ltris"; PromptInstall
+    SonicRoboBlastCommands() {
+    printf "\nFlatpak will be required to install this program.\n"
+    sudo apt install flatpak
+    flatpak install flathub org.srb2.SRB2
+    printf "Use this command to run Sonic Robo Blast 2: flatpak run org.srb2.SRB2"
+    }
+    PROGRAM="Sonic Robo Blast 2"; multiplecommands=1; commands_function=SonicRoboBlastCommands; PromptInstall
 fi
 install_category=0
 
 # Programming / Developer programs go here. (Placeholder for later.)
-printf "\n\nCategory: Programming"
-PROGRAM="by each option in Programming software"; prompt_category=1; PromptInstall
+CATEGORY="Category: Programming"
+PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
     TerminalCustomizationCommands() {
@@ -230,7 +252,11 @@ then
     echo "Installing fonts-powerline"
     sudo apt-get install fonts-powerline
     echo "Installing dotfiles from the provided repository."
-    sudo rm ~/.bashrc
+    [[ -f ~/.config/terminator/config ]] && sudo rm ~/.config/terminator/config
+    [[ -f ~/.bashrc ]] && sudo rm ~/.bashrc
+    [[ -f ~/.bash_aliases ]] && sudo rm ~/.bash_aliases
+    [[ -f ~/.nanorc ]] && sudo rm ~/.nanorc
+    [[ -f ~/.vimrc ]] && sudo rm ~/.vimrc
     git clone $DOTFILES_REPO
     sudo cp -R dotfiles/files/.bashrc dotfiles/files/.bash_aliases dotfiles/files/.vimrc dotfiles/files/.nanorc dotfiles/files/.config/ /home/user/ 
     sudo rm dotfiles -r
@@ -239,6 +265,7 @@ then
     PROGRAM="Terminal-Emulator Customizations"; multiplecommands=1; commands_function=TerminalCustomizationCommands; PromptInstall
     PROGRAM="Atom IDE"; INSTALL_STEPS="sudo snap install atom --classic"; PromptInstall
     PROGRAM="PyCharm IDE"; INSTALL_STEPS="sudo snap install pycharm-community --classic"; PromptInstall
+    PROGRAM="Cool Retro Terminal"; INSTALL_STEPS="sudo apt-get install cool-retro-term"; PromptInstall
 fi
 install_category=0
 

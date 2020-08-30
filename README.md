@@ -19,9 +19,12 @@
 ---------------------------------------------------
 
 # Batch Install Your Favorite Programs & Software!
-Web-browsers:
+Web-Browsers & Online-Media:
 * **Brave Browser** - Chromium-based browser. It is very smooth, privacy-respecting & secure.
 * **Ungoogled Chromium** - Fork of Chromium with minimal Google.
+* **Youtube-dl**
+* **Spotify** - *Proprietory, may contain spyware*
+* **Discord** - *Proprietory, may contain spyware*
 
 Video-recording-and-editing:
 * **OBS, Audacity, Kdenlive**
@@ -42,6 +45,7 @@ Programming & Coding:
 * **Atom IDE**
 * **PyCharm IDE**
 * **Terminator & Custom Terminal Configuration**
+* **Cool Retro Terminal**
 
 # Confusion-Free PC-Gaming & Emulation!
 You can install Linux-supported PC gaming software:
@@ -50,7 +54,7 @@ You can install Linux-supported PC gaming software:
 * **Minecraft Java Edition** (*The original version*. Natively supported & Has Large Mod Support.)
 * **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy.)
 * **Minetest**
-
+* **Sonic Robo Blast 2** - Doom-Engine Sonic fangame.
 You can install common game emulator programs: 
 * **RetroArch - Emulates almost any retro/classic gaming console you need.**
 * **Dolphin - Emulates GCN/Wii.**

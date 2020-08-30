@@ -22,7 +22,6 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linux
                 cd ~/Downloads/
                 rm temp-script-install -r
-                break
             ;;
         esac
         case "Raspberry" in
@@ -36,9 +35,10 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-raspi.sh $INSTALL_PATH/custom-autoinstall-raspi
                 cd ~/Downloads/
                 rm temp-script-install -r
-                break
             ;;
         esac
+        [[ -f /usr/local/bin/custom-autoinstall-linux ]] && printf "\ncustom-autoinstall-linux successfully installed.\n" || printf "\ncustom-autoinstall-linux not successfully installed.\n"
+        break
         done
     elif [[ $yesorno == "U"* ]]; then
         if [[ -f $INSTALL_PATH/custom-autoinstall-linux ]]; then
@@ -52,6 +52,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
             sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-ubuntu.sh $INSTALL_PATH/custom-autoinstall-linux
             cd ~/Downloads/
             rm temp-script-install -r
+            break
         elif [[ -f $INSTALL_PATH/custom-autoinstall-raspi ]]; then
             printf "\nUpdating script in $INSTALL_PATH PATH directory...\n"
             sudo rm $INSTALL_PATH/custom-autoinstall-raspi # removes existing before updating.
@@ -63,6 +64,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
             cd ~/Downloads/
             rm temp-script-install -r
             printf "\nAttempted to update script. \n"
+            break
         else
             printf "\nNo script to update. HINT: Try installing script first. \n"
         fi
