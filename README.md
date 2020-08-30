@@ -10,12 +10,19 @@
 # Installation Instructions.   
   1. **Download this repository and extract the zip archive. (or ```git clone```, its faster.)**
 
-  2. **Run this installation script:** ```./install-update-script.sh```
+  2. **Run this installation script:** ```./install-update-script.sh``` (Use this to update/uninstall in the future.)
   
   3. **The program is now available as a terminal command: ```custom-autoinstall-linux```. Run it to install whatever you need.**
   
-  4. **Keep ```install-update-script.sh``` somewhere safe (*such as an external drive*) if you want to use it to install/update/uninstall again in the future.**
-  
+  ```
+ Usage: ./custom-autoinstall-linux [options [parameters]]
+
+Options:
+ -A|-a|--install-all, Installs all available software.
+ -C|-c|--install-category [categories], Installs from provided categories. (See below.)
+NOTE: Can only install one category at the moment due to some bugs.
+ -H|-h|--help, displays Help page with available categories.
+```
 ---------------------------------------------------
 
 # Batch Install Your Favorite Programs & Software!
