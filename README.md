@@ -55,6 +55,7 @@ Miscellaneous Utilities:
 * **Wireshark** - Packet sniffer
 * **BalenaEtcher** - Flash ISOs to external drive
 * **Okular** - PDF Viewer
+* **gscan2pdf** - Convert Photos/Images to PDF.
 * **Alacarte** - Allows you to create Launcher shortcuts to programs.
 
 Programming & Coding:
