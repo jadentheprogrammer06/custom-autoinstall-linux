@@ -31,10 +31,6 @@ Web-Browsers and tools:
 * **Ungoogled Chromium** - Fork of Chromium with minimal Google.
 * **Youtube-dl**
 
-Online Consoomption:
-* **Spotify** - *Proprietory, may be considered spyware*
-* **Discord** - *Proprietory, may be considered spyware*
-
 Video-recording-and-editing:
 * **OBS**
 * **Kazam**
@@ -59,21 +55,10 @@ Miscellaneous Utilities:
 * **Alacarte** - Allows you to create Launcher shortcuts to programs.
 
 Programming & Coding:
-* **Atom IDE**
-* **PyCharm IDE**
 * **Terminator & Custom Terminal Configuration**
-* **Cool Retro Terminal**
 
 # Confusion-Free PC-Gaming & Emulation!
 You can install Linux-supported PC gaming software:
-* **Steam - Linux PC Gaming.**
-* **Ltris - Linux Tetris Clone**
-* **Minecraft Java Edition** (*The original version*. Natively supported & Has Large Mod Support.)
-* **Minecraft Bedrock Edition** (Linux port of Android version, requires Play Store copy.)
-* **Minetest**
-* **Sonic Robo Blast 2** - Doom-Engine Sonic fangame.
-You can install common game emulator programs: 
+* **Steam - PC-Gaming Store & Launcher. Has Linux support.**
+* **Minecraft Java Edition** (*PC version, has mod support.)
 * **RetroArch - Emulates almost any retro/classic gaming console you need.**
-* **Dolphin - Emulates GCN/Wii.**
-* **PCSX2 - Emulates PS2.**
-* **Citra - Emulates 3DS.**

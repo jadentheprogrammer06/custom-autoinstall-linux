@@ -158,16 +158,6 @@ then
 fi
 install_category=0
 
-# Social-Media / Proprietory Online Consoomption goes here. (Spotify, Discord)
-CATEGORY="social-media"
-PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
-if [[ $install_category == 1 ]]
-then
-    PROGRAM="Spotify (Music Streaming, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install spotify"; PromptInstall
-    PROGRAM="Discord (Chat for Gamers, PROPRIETORY SOFTWARE)"; INSTALL_STEPS="sudo snap install discord"; PromptInstall
-fi
-install_category=0
-
 # "Utilties" / miscellaneous programs go here. (VLC media player, Syncthing, GIMP, Alacarte, Virtualbox, Wireshark)
 CATEGORY="utilities"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
@@ -244,82 +234,23 @@ CATEGORY="gaming"
 PROGRAM="some software in ${CATEGORY}"; prompt_category=1; PromptInstall
 if [[ $install_category == 1 ]]
 then
-    PROGRAM="Retroarch (Retro/Handheld Console Emulation)"; INSTALL_STEPS='sudo snap install retroarch'; PromptInstall
+    PROGRAM="Retroarch (Retro Console/Handheld/Arcade Emulation)"; INSTALL_STEPS='sudo snap install retroarch'; PromptInstall
     SteamCommands() {
     wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/steam.deb
     }
-    PROGRAM="Steam (PC/Linux Games Store & Launcher) (*May be considered Proprietory software.)"; multiplecommands=1; commands_function=SteamCommands; PromptInstall
-    DolphinCommands() {
-    sudo apt-add-repository ppa:dolphin-emu/ppa
-    sudo apt update
-    sudo apt install dolphin-emu
-    }
-    PROGRAM="Dolphin (GCN/Wii Emulation)"; multiplecommands=1; commands_function=DolphinCommands; PromptInstall
-    CitraCommands() {
-    printf "\nFlatpak will be required to install this program\n"
-    sudo apt install flatpak
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install https://flatpak.citra-emu.org/citra-nightly.flatpakref
-    }
-    PROGRAM="Citra (3DS Emulation)"; multiplecommands=1; commands_function=CitraCommands;PromptInstall
-    PCSX2Commands() {
-    printf "\nPCSX2 has to compile from source. May take a while. Do something productive as you wait.\n"
-    sudo snap install cmake
-        sudo apt remove gcc-9 g++-9
-        sudo apt install cmake g++-10-multilib \
-	        libwxgtk3.0-gtk3-dev:i386 libgtk-3-dev:i386 \
-	        libaio-dev:i386 libasound2-dev:i386 liblzma-dev:i386 \
-	        libsdl2-dev:i386 libsoundtouch-dev:i386 \
-	        libxml2-dev:i386 libpcap0.8-dev:i386
-
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
-        sudo update-alternatives --install /usr/bin/cc  cc  /usr/bin/gcc 30
-        sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
-	cd ~
-        git clone https://github.com/PCSX2/pcsx2.git
-        cd ~/pcsx2
-	mkdir build
-	cd build
-
-        cmake -DCMAKE_TOOLCHAIN_FILE=cmake/linux-compiler-i386-multilib.cmake -DCMAKE_BUILD_TYPE=Release \
-	        -DBUILD_REPLAY_LOADERS=TRUE -DCMAKE_BUILD_PO=FALSE -DGTK3_API=TRUE ..
-	        
-        make -j10
-        make install
-        cd ../bin
-    }
-    PROGRAM="PCSX2 (PS2 Emulation)"; multiplecommands=1; commands_function=PCSX2Commands; PromptInstall
-    MCBedrockCommands() {
-        sudo dpkg --add-architecture i386
-        sudo apt-get update
-        sudo apt install curl libc6-i386 libx11-6:i386 libxext6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386 libpulse0:i386
-        curl -L https://github.com/ChristopherHX/linux-packaging-scripts/releases/download/appimage/Minecraft_Bedrock_Launcher-x86_64.0.0.510.AppImage --output MC.AppImage
-        chmod +x MC.AppImage
-        sudo mv MC.AppImage /usr/local/bin/MC-bedrock.AppImage/
-        . ~/.bashrc
-        printf "\nMinecraft Bedrock Edition is installed in ~/usr/local/bin PATH directory. To run the launcher use MC-bedrock.AppImage in terminal. Will have to manually add program to applications menu using Alacarte."
-    }
-    PROGRAM="Minecraft (Bedrock Edition, Unofficial Android -> Linux Port)"; multiplecommands=1; commands_function=MCBedrockCommands; PromptInstall
+    PROGRAM="Steam (PC Gaming Store & Launcher for Linux) (*Proprietory software.)"; multiplecommands=1; commands_function=SteamCommands; PromptInstall
     MCJavaCommands() {
     sudo apt install default-jre #Need to install java runtime environment dependency.
-    sudo apt-get install aptitude
-    sudo aptitude install openjdk-8-jre #This is useful for older MC versions <1.12.
+    # the JRE/JDK dependencies required to run MC ver. < 1.13 seem to contain malicious programs. I had to remove them.
+    # older minecraft versions may not be supported but thats the price you pay for security.
+    # sadly, older minecraft versions don't run too well by default without installing the third-party packages.
     sudo apt-get --fix-missing
     sudo apt-get install -f
     wget https://launcher.mojang.com/download/Minecraft.deb -P ~/Downloads/ && sudo dpkg -i ~/Downloads/Minecraft.deb
     printf "\nMinecraft was automatically installed from the official .deb package located in your ~/Downloads folder. The game itself should be available from your application menu."
     }
-    PROGRAM="Minecraft (Java Edition, Original PC Version)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
+    PROGRAM="Minecraft Java Edition (PC Version)"; multiplecommands=1; commands_function=MCJavaCommands; PromptInstall
     PROGRAM="Minetest (FOSS Minecraft Clone)"; INSTALL_STEPS='sudo snap install minetest'; PromptInstall
-    PROGRAM="Ltris (FOSS Tetris Clone)"; INSTALL_STEPS="sudo apt-get install ltris"; PromptInstall
-    SonicRoboBlastCommands() {
-    printf "\nFlatpak will be required to install this program.\n"
-    sudo apt install flatpak
-    flatpak install flathub org.srb2.SRB2
-    printf "Use this command to run Sonic Robo Blast 2: flatpak run org.srb2.SRB2"
-    }
-    PROGRAM="Sonic Robo Blast 2"; multiplecommands=1; commands_function=SonicRoboBlastCommands; PromptInstall
 fi
 install_category=0
 
@@ -352,9 +283,6 @@ then
     . ~/.bashrc
     }
     PROGRAM="Terminal-Emulator Customizations"; multiplecommands=1; commands_function=TerminalCustomizationCommands; PromptInstall
-    PROGRAM="Atom IDE"; INSTALL_STEPS="sudo snap install atom --classic"; PromptInstall
-    PROGRAM="PyCharm IDE"; INSTALL_STEPS="sudo snap install pycharm-community --classic"; PromptInstall
-    PROGRAM="Cool Retro Terminal"; INSTALL_STEPS="sudo apt-get install cool-retro-term"; PromptInstall
 fi
 install_category=0
 
