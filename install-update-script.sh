@@ -24,6 +24,19 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 rm temp-script-install -r
             ;;
         esac
+        case "Pop" in
+            $VERSION)
+                printf "\nInstalling for Pop OS AMD64 systems. \n"
+                printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
+                mkdir ~/Downloads/temp-script-install/
+                cd ~/Downloads/temp-script-install/
+                wget $INSTALL_TEMP_ARCHIVE_URL
+                unzip ./master.zip
+                sudo cp custom-autoinstall-linux-master/bin/custom-autoinstall-popos.sh $INSTALL_PATH/custom-autoinstall-linux
+                cd ~/Downloads/
+                rm temp-script-install -r
+            ;;
+        esac
         case "Raspberry" in
             $VERSION)
                 printf "\nInstalling for Raspberry Pi systems.\n"
