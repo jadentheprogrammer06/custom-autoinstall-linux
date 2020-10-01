@@ -3,9 +3,10 @@
  
  *Some facts:*
  
-   * **This program is primarily designed for AMD64 systems running UBUNTU.**
+   * **This program is primarily designed for AMD64 systems running Ubuntu/PopOS.**
    * **People are free to download this and modify/fork it to suit their needs.**  
-   *  **I plan on adding support for other distros and devices in the future.**
+   * **I may add support for other distros and devices in the future.**
+   * **For PopOS, snaps are replaced with flatpaks. (Plan on using more flatpaks in Ubuntu.)**
 
 # Installation Instructions.   
   1. **Download this repository and extract the zip archive. (or ```git clone```, its faster.)**
@@ -26,26 +27,28 @@ NOTE: Can only install one category at the moment due to some bugs.
 ---------------------------------------------------
 
 # Batch Install Your Favorite Programs & Software!
-Web-Browsers and tools:
-* **Brave Browser** - Chromium-based browser. It is very smooth, privacy-respecting & secure.
-* **Ungoogled Chromium** - Fork of Chromium with minimal Google.
+## Categories
+## web-browsing:
+* **Brave Browser** - Chromium-based browser. It is privacy-respecting & secure.
+* **Ungoogled Chromium** - Fork of Chromium
 * **Youtube-dl**
 
-Video-recording-and-editing:
+## video-editing:
 * **OBS**
 * **Kazam**
 * **Audacity**
 * **Kdenlive**
 * **OpenShot**
 
-Image-editing and Art:
+## image-editing:
 * **GIMP**
 * **Krita**
 * **Inkscape**
 * **Pinta**
 * **Blender**
 
-Miscellaneous Utilities:
+## utilities:
+* **VLC** - Media Player
 * **Syncthing** - Easily sync files between your devices. Free & Open-Source. Is more private/secure than cloud-storage backups.
 * **VirtualBox** - OS Virtualization
 * **Wireshark** - Packet sniffer
@@ -54,11 +57,12 @@ Miscellaneous Utilities:
 * **gscan2pdf** - Convert Photos/Images to PDF.
 * **Alacarte** - Allows you to create Launcher shortcuts to programs.
 
-Programming & Coding:
+## programming:
 * **Terminator & Custom Terminal Configuration**
+* For PopOS: **Vim and Python3**
 
-# Confusion-Free PC-Gaming & Emulation!
-You can install Linux-supported PC gaming software:
-* **Steam - PC-Gaming Store & Launcher. Has Linux support.**
-* **Minecraft Java Edition** (*PC version, has mod support.)
+## gaming:
+* **Steam - PC-Gaming Store & Launcher.**
+* **Minecraft Java Edition** 
 * **RetroArch - Emulates almost any retro/classic gaming console you need.**
+* **Petris - Tetris written in Python.**
