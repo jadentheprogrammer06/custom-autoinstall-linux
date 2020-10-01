@@ -24,7 +24,7 @@ printf "\nWould you like to install/update/remove your custom-autoinstall-linux 
                 rm temp-script-install -r
             ;;
         esac
-        case "Pop" in
+        case "Pop!_OS" in
             $VERSION)
                 printf "\nInstalling for Pop OS AMD64 systems. \n"
                 printf "\nInstalling script to $INSTALL_PATH PATH directory...\n"
